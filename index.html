@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo - Amplify Your Ideas</title>
+    <link rel="icon" type="image/png" href="Icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for a vibrant, tech-inspired theme and animations */
+        :root {
+            --primary-bg: #FFFFFF; /* White */
+            --secondary-bg: #F0F0F0; /* Light Gray / Silver */
+            --accent-color: #4A4A4A; /* Ash / Dark Grey for contrast */
+            --text-color: #1a1a1a; /* Dark text for readability */
+            --nav-hover-color: #6B6B6B; /* Slightly darker ash */
+        }
+        
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            scroll-behavior: smooth;
+        }
+
+        /* Glitch effect for the main heading */
+        .glitch-text {
+            position: relative;
+            animation: text-glitch 2s infinite;
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            color: var(--accent-color);
+        }
+        
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 red;
+            animation: glitch-anim-1 2s infinite;
+        }
+        
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 blue;
+            animation: glitch-anim-2 2s infinite;
+        }
+
+        @keyframes text-glitch {
+            0% { text-shadow: 0 0 transparent; }
+            10% { transform: skewX(-5deg); text-shadow: 2px 0 red, -2px 0 blue; }
+            11% { transform: skewX(0deg); text-shadow: 0 0 transparent; }
+            20% { transform: skewX(5deg); text-shadow: -2px 0 red, 2px 0 blue; }
+            21% { transform: skewX(0deg); text-shadow: 0 0 transparent; }
+            22% { transform: skewX(-5deg); text-shadow: 2px 0 red, -2px 0 blue; }
+            23% { transform: skewX(0deg); text-shadow: 0 0 transparent; }
+            24% { transform: skewX(5deg); text-shadow: -2px 0 red, 2px 0 blue; }
+            25% { transform: skewX(0deg); text-shadow: 0 0 transparent; }
+        }
+        
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(21px, 9999px, 83px, 0); transform: skewX(-5deg); }
+            10% { clip: rect(61px, 9999px, 83px, 0); transform: skewX(5deg); }
+            20% { clip: rect(40px, 9999px, 2px, 0); transform: skewX(-5deg); }
+            30% { clip: rect(31px, 9999px, 47px, 0); transform: skewX(5deg); }
+            40% { clip: rect(98px, 9999px, 95px, 0); transform: skewX(-5deg); }
+            50% { clip: rect(54px, 9999px, 60px, 0); transform: skewX(5deg); }
+            60% { clip: rect(29px, 9999px, 32px, 0); transform: skewX(-5deg); }
+            70% { clip: rect(53px, 9999px, 82px, 0); transform: skewX(5deg); }
+            80% { clip: rect(60px, 9999px, 83px, 0); transform: skewX(-5deg); }
+            90% { clip: rect(80px, 9999px, 88px, 0); transform: skewX(5deg); }
+            100% { clip: rect(40px, 9999px, 2px, 0); transform: skewX(0deg); }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(83px, 9999px, 73px, 0); transform: skewX(5deg); }
+            10% { clip: rect(35px, 9999px, 7px, 0); transform: skewX(-5deg); }
+            20% { clip: rect(50px, 9999px, 57px, 0); transform: skewX(5deg); }
+            30% { clip: rect(32px, 9999px, 41px, 0); transform: skewX(-5deg); }
+            40% { clip: rect(100px, 9999px, 60px, 0); transform: skewX(5deg); }
+            50% { clip: rect(27px, 9999px, 16px, 0); transform: skewX(-5deg); }
+            60% { clip: rect(72px, 9999px, 12px, 0); transform: skewX(5deg); }
+            70% { clip: rect(96px, 9999px, 20px, 0); transform: skewX(-5deg); }
+            80% { clip: rect(100px, 9999px, 63px, 0); transform: skewX(5deg); }
+            90% { clip: rect(68px, 9999px, 50px, 0); transform: skewX(-5deg); }
+            100% { clip: rect(83px, 9999px, 73px, 0); transform: skewX(0deg); }
+        }
+
+        /* General element styling */
+        .section-card {
+            background-color: var(--secondary-bg);
+            border: 2px solid var(--accent-color);
+            box-shadow: 4px 4px 0px var(--accent-color);
+        }
+
+        .section-heading {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        /* Button styling */
+        .btn {
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            transition: all 0.3s ease-in-out;
+            border: 2px solid var(--accent-color);
+            box-shadow: 2px 2px 0px var(--accent-color);
+            transform: skew(-5deg);
+        }
+        
+        .btn:hover {
+            transform: skew(-5deg) scale(1.05);
+            box-shadow: 4px 4px 0px var(--accent-color);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            box-shadow: 2px 2px 0px var(--accent-color);
+            transform: skew(5deg);
+        }
+
+        .btn-outline:hover {
+            transform: skew(5deg) scale(1.05);
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            box-shadow: 4px 4px 0px var(--accent-color);
+        }
+
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--nav-hover-color);
+        }
+        
+        /* Utility classes */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Chat specific styles */
+        .chat-window {
+            height: 85vh; /* Larger chat area */
+            border-radius: 0.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--secondary-bg);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-bubble {
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            margin-bottom: 0.5rem;
+            max-width: 75%;
+            word-wrap: break-word;
+        }
+
+        .message-bubble.sent {
+            background-color: #D3D3D3; /* Light Grey */
+            align-self: flex-end;
+            border: 1px solid var(--accent-color);
+        }
+
+        .message-bubble.received {
+            background-color: #E6E6E6; /* Lighter Grey */
+            align-self: flex-start;
+            border: 1px solid var(--text-color);
+        }
+
+        .message-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+
+        .message-timestamp {
+            font-size: 0.6rem;
+            color: #666;
+            opacity: 0.8;
+            align-self: flex-end;
+        }
+
+        .message-bubble.sent .message-timestamp {
+            color: #4A4A4A; /* Darker color for sent messages */
+        }
+
+        .chat-header-container {
+            background-color: var(--primary-bg);
+            border-bottom: 1px solid var(--accent-color);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-input-container {
+            padding: 1rem;
+            border-top: 1px solid var(--accent-color);
+            background-color: var(--primary-bg);
+        }
+        
+        .profile-list-container {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .profile-list-header {
+            font-weight: 600;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(74, 74, 74, 0.4);
+            padding-bottom: 0.5rem;
+        }
+
+        .profile-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .profile-list-item:hover {
+            background-color: #e6e6e6;
+        }
+        
+        .profile-list-item button {
+            color: var(--accent-color);
+            transition: color 0.2s ease-in-out;
+        }
+        
+        .profile-list-item button.text-red-400:hover {
+            color: #f87171;
+        }
+        
+        .profile-list-item button.text-green-400:hover {
+            color: #4ade80;
+        }
+
+        /* Pop-up menu for chat selection */
+        .chat-menu-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 50;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .chat-menu-popup.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .chat-menu-card {
+            background-color: var(--secondary-bg);
+            border: 2px solid var(--accent-color);
+            box-shadow: 8px 8px 0px var(--accent-color);
+            transform: skew(-2deg);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        /* New styling for idea board tags */
+        .idea-tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .idea-tag {
+            background-color: #DCDCDC; /* Lighter grey for tags */
+            color: var(--accent-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Header with navigation and image -->
+    <header class="w-full p-4 md:p-6 bg-transparent">
+        <nav class="container mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-center md:text-left">
+            <div class="flex items-center space-x-2">
+                <a href="#" class="text-3xl font-extrabold text-white glitch-text" data-text="ECHO">ECHO</a>
+                <img src="Icon.png" alt="Echo icon" class="w-8 h-8 rounded-full" />
+            </div>
+            <ul class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-md font-semibold text-gray-400">
+                <li><a href="#home" class="nav-link" data-page="home">Login</a></li>
+                <li><a href="#profile" class="nav-link hidden" data-page="profile">Profile</a></li>
+                <li><a href="#idea-board" class="nav-link hidden" data-page="idea-board">Idea Board</a></li>
+                <li><a href="#chat-system" class="nav-link hidden" data-page="chat-system">Chat System</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content container -->
+    <main class="container mx-auto max-w-7xl px-4 py-8 flex-grow flex items-center justify-center">
+
+        <!-- Login / Create Profile Section -->
+        <section id="home" class="animated-section page-section section-card rounded-lg p-6 md:p-12 mb-12 w-full max-w-md">
+            <h2 class="section-heading text-center text-2xl md:text-4xl">Login</h2>
+            <div id="auth-state" class="animate-fadeIn">
+                <p class="text-center text-lg mb-4 text-text-color">Create a new profile or select an existing one.</p>
+                <p id="auth-error-message" class="text-red-500 mb-4 font-bold text-sm hidden"></p>
+                <form id="auth-form" class="flex flex-col gap-4">
+                    <input type="text" id="username-input" placeholder="Your Username" required class="w-full px-4 py-3 bg-secondary-bg text-text-color rounded-lg border-2 border-accent-color focus:outline-none focus:ring-2 focus:ring-accent-color transition-colors">
+                    <button type="submit" id="auth-btn" class="btn w-full py-3 rounded-lg text-lg font-bold">Create New Profile</button>
+                </form>
+                <div class="mt-8">
+                    <h3 class="text-center font-bold text-gray-400 text-sm mb-2">Or select a profile:</h3>
+                    <select id="profile-select" class="w-full px-4 py-3 bg-secondary-bg text-text-color rounded-lg border-2 border-accent-color focus:outline-none focus:ring-2 focus:ring-accent-color transition-colors">
+                        <option value="">-- No Profiles Found --</option>
+                    </select>
+                    <button id="login-btn" class="btn w-full py-3 rounded-lg text-lg font-bold mt-4 hidden">Login</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="animated-section page-section section-card rounded-lg p-6 md:p-12 mb-12 hidden w-full">
+            <h2 class="section-heading text-center text-2xl md:text-4xl">Profile</h2>
+            <div id="profile-view" class="flex flex-col items-center">
+                <p class="text-sm text-gray-400 mb-2">Currently logged in as:</p>
+                <h3 id="profile-name" class="text-3xl font-bold mb-4 text-accent-color"></h3>
+                <p id="profile-bio" class="text-md mb-4 text-center"></p>
+                <button id="edit-profile-btn" class="btn px-8 py-3 rounded-lg text-lg font-bold">Edit Profile</button>
+                <button id="sign-out-btn" class="btn-outline px-8 py-3 rounded-lg text-lg font-bold mt-4">Sign Out</button>
+            </div>
+            
+            <form id="profile-edit" class="flex flex-col gap-4 hidden max-w-xl mx-auto">
+                <input type="text" id="profile-name-input" placeholder="Your Username" class="w-full px-4 py-3 bg-secondary-bg text-text-color rounded-lg border-2 border-accent-color focus:outline-none focus:ring-2 focus:ring-accent-color transition-colors">
+                <textarea id="profile-bio-input" placeholder="Your Bio" rows="3" class="w-full px-4 py-3 bg-secondary-bg text-text-color rounded-lg border-2 border-accent-color focus:outline-none focus:ring-2 focus:ring-accent-color transition-colors"></textarea>
+                <button type="submit" id="save-profile-btn" class="btn w-full py-3 rounded-lg text-lg font-bold">Save Profile</button>
+                <button type="button" id="cancel-edit-btn" class="btn-outline w-full py-3 rounded-lg text-lg font-bold">Cancel</button>
+            </form>
+            
+            <div class="profile-list-container">
+                <div>
+                    <h3 class="profile-list-header">Friend Requests</h3>
+                    <div id="friend-requests-list" class="text-sm mt-2">
+                        <!-- Friend requests will be rendered here -->
+                    </div>
+                </div>
+                <div>
+                    <h3 class="profile-list-header">Friends</h3>
+                    <div id="friends-list" class="text-sm mt-2">
+                        <!-- Friends list will be here -->
+                    </div>
+                </div>
+                <div>
+                    <h3 class="profile-list-header">Add Friends</h3>
+                    <div id="add-friend-list" class="text-sm mt-2">
+                        <!-- List of other profiles to add will be here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Idea Board Section -->
+        <section id="idea-board" class="animated-section page-section hidden section-card rounded-lg p-6 md:p-12 mb-12 w-full">
+            <h2 class="section-heading text-center text-2xl md:text-4xl">Idea Board</h2>
+            <form id="echo-form" class="flex flex-col gap-2 mb-8 max-w-xl mx-auto">
+                <label for="echo-message-input" class="text-sm font-semibold">Share your tech idea:</label>
+                <textarea id="echo-message-input" placeholder="A neural network for art generation..." rows="3" required class="w-full px-4 py-3 bg-primary-bg text-text-color rounded-lg border-2 border-accent-color focus:outline-none focus:ring-2 focus:ring-accent-color transition-colors"></textarea>
+                <label for="echo-tags-input" class="text-sm font-semibold">Add tags:</label>
+                <input type="text" id="echo-tags-input" placeholder="AI, Art, Neural Network" class="w-full px-4 py-3 bg-primary-bg text-text-color rounded-lg border-2 border-accent-color focus:outline-none focus:ring-2 focus:ring-accent-color transition-colors">
+                <p class="text-xs text-gray-500 mt-1 mb-4">Separate tags with a comma (e.g., "tag1, tag2").</p>
+                <button type="submit" class="btn w-full py-3 rounded-lg text-lg font-bold">Share Idea</button>
+            </form>
+            <div id="echos-list" class="flex flex-col gap-6 text-left max-w-2xl mx-auto">
+                <!-- Echos will be rendered here -->
+            </div>
+        </section>
+
+        <!-- Chat System Section -->
+        <section id="chat-system" class="animated-section page-section hidden section-card rounded-lg p-6 md:p-12 mb-12 w-full">
+            <h2 class="section-heading text-center text-2xl md:text-4xl">Chat System</h2>
+            <div class="chat-window section-card rounded-lg overflow-hidden">
+                <div class="chat-header-container">
+                    <!-- Chat switch button with SVG icon -->
+                    <button id="chat-menu-button" class="btn px-4 py-2 rounded-lg text-sm font-bold">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <h3 id="current-chat-title" class="text-lg font-bold text-text-color text-center flex-grow">Group Chat</h3>
+                    <div class="w-12"></div>
+                </div>
+                <div id="chat-messages" class="chat-messages">
+                    <p class="text-center text-gray-500">Select a chat to begin messaging.</p>
+                </div>
+                <form id="chat-input-form" class="chat-input-container">
+                    <input type="text" id="chat-message-input" placeholder="Type a message..." class="w-full px-4 py-3 bg-primary-bg text-text-color rounded-lg border-2 border-accent-color focus:outline-none focus:ring-2 focus:ring-accent-color transition-colors">
+                    <button type="submit" class="btn w-full mt-2 py-3 rounded-lg text-lg font-bold">Send</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Pop-up Chat Menu (starts hidden) -->
+    <div id="chat-menu-popup" class="chat-menu-popup">
+        <div class="chat-menu-card rounded-lg p-6 w-11/12 max-w-sm flex flex-col items-center">
+            <h3 class="text-2xl font-bold mb-6 text-center text-accent-color transform skew-x-2">Select a Chat</h3>
+            <ul id="chat-list" class="space-y-4 w-full">
+                <!-- Chat items will be dynamically generated here -->
+            </ul>
+            <button id="close-menu-button" class="btn-outline mt-6 w-full py-3 rounded-lg text-lg font-bold transform skew-x-2">Close</button>
+        </div>
+    </div>
+
+    <!-- Scroll to top button -->
+    <button id="scroll-to-top" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center text-white bg-accent-color rounded-full shadow-lg opacity-0 transition-opacity duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+        </svg>
+    </button>
+
+    <!-- Footer with image -->
+    <footer class="text-center text-gray-500 py-6 text-sm">
+        <div class="flex items-center justify-center space-x-2">
+            <img src="Icon.png" alt="Echo icon" class="w-6 h-6 rounded-full" />
+            <p>&copy; 2025 Echo - A product of NXH. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Use an anonymous function to prevent global scope pollution
+        (() => {
+            // Get references to main elements
+            const pages = document.querySelectorAll('.page-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const scrollButton = document.getElementById('scroll-to-top');
+
+            // Profile & Auth elements
+            const authState = document.getElementById('auth-state');
+            const profileView = document.getElementById('profile-view');
+            const profileEdit = document.getElementById('profile-edit');
+            const profileSelect = document.getElementById('profile-select');
+            const loginBtn = document.getElementById('login-btn');
+            const authForm = document.getElementById('auth-form');
+            const usernameInput = document.getElementById('username-input');
+            const profileNameEl = document.getElementById('profile-name');
+            const profileBioEl = document.getElementById('profile-bio');
+            const profileNameInput = document.getElementById('profile-name-input');
+            const profileBioInput = document.getElementById('profile-bio-input');
+            const editProfileBtn = document.getElementById('edit-profile-btn');
+            const cancelEditBtn = document.getElementById('cancel-edit-btn');
+            const signoutBtn = document.getElementById('sign-out-btn');
+            const addFriendListContainer = document.getElementById('add-friend-list');
+            const friendsListContainer = document.getElementById('friends-list');
+            const friendRequestsListContainer = document.getElementById('friend-requests-list');
+            
+            // Idea Board elements
+            const echoForm = document.getElementById('echo-form');
+            const echoMessageInput = document.getElementById('echo-message-input');
+            const echoTagsInput = document.getElementById('echo-tags-input'); // Added new tags input
+            const echosList = document.getElementById('echos-list');
+
+            // Chat elements
+            const chatMenuButton = document.getElementById('chat-menu-button');
+            const chatMenuPopup = document.getElementById('chat-menu-popup');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const chatList = document.getElementById('chat-list');
+            const chatMessagesContainer = document.getElementById('chat-messages');
+            const chatInputForm = document.getElementById('chat-input-form');
+            const chatMessageInput = document.getElementById('chat-message-input');
+            const currentChatTitle = document.getElementById('current-chat-title');
+            
+            // Local Storage Keys
+            const LOCAL_STORAGE_PROFILES_KEY = 'echo_all_profiles';
+            const LOCAL_STORAGE_CURRENT_PROFILE_ID_KEY = 'echo_current_profile_id';
+            const LOCAL_STORAGE_ECHOS_KEY = 'echo_messages';
+            const LOCAL_STORAGE_CHATS_KEY = 'echo_chats';
+            let currentActiveChatId = 'group-chat'; // Start with group chat active
+
+            // Function to generate a simple UUID for a local user ID
+            const generateUUID = () => {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            };
+            
+            // Helper function to get all profiles from local storage
+            const getAllProfiles = () => {
+                const profiles = localStorage.getItem(LOCAL_STORAGE_PROFILES_KEY);
+                return profiles ? JSON.parse(profiles) : [];
+            };
+
+            // Helper function to save all profiles to local storage
+            const saveAllProfiles = (profiles) => {
+                localStorage.setItem(LOCAL_STORAGE_PROFILES_KEY, JSON.stringify(profiles));
+            };
+
+            // Function to load the current user profile from local storage
+            const loadCurrentProfile = () => {
+                const currentProfileId = localStorage.getItem(LOCAL_STORAGE_CURRENT_PROFILE_ID_KEY);
+                if (!currentProfileId) return null;
+                const profiles = getAllProfiles();
+                return profiles.find(p => p.uid === currentProfileId);
+            };
+
+            // Function to save the current profile and update master list
+            const saveCurrentProfile = (profile) => {
+                let profiles = getAllProfiles();
+                const existingProfileIndex = profiles.findIndex(p => p.uid === profile.uid);
+                if (existingProfileIndex > -1) {
+                    profiles[existingProfileIndex] = profile;
+                } else {
+                    profiles.push(profile);
+                }
+                saveAllProfiles(profiles);
+                localStorage.setItem(LOCAL_STORAGE_CURRENT_PROFILE_ID_KEY, profile.uid);
+                updateUI(profile);
+            };
+
+            // --- Idea Board Functions ---
+            const loadEchos = () => {
+                const echos = localStorage.getItem(LOCAL_STORAGE_ECHOS_KEY);
+                return echos ? JSON.parse(echos) : [];
+            };
+
+            const saveEchos = (echos) => {
+                localStorage.setItem(LOCAL_STORAGE_ECHOS_KEY, JSON.stringify(echos));
+                renderEchos();
+            };
+
+            const renderEchos = () => {
+                const echos = loadEchos();
+                echosList.innerHTML = ''; // Clear the list before re-rendering
+                if (echos.length === 0) {
+                    echosList.innerHTML = '<p class="text-sm text-gray-500 text-center">No ideas have been shared yet. Be the first!</p>';
+                } else {
+                    echos.reverse().forEach(echo => {
+                        const echoCard = document.createElement('div');
+                        echoCard.className = 'section-card rounded-lg p-4 transition-transform hover:scale-[1.01]';
+                        const formattedTime = new Date(echo.timestamp).toLocaleString();
+                        
+                        // Create the main content
+                        echoCard.innerHTML = `
+                            <p class="text-sm text-gray-500 mb-2">${echo.authorName} shared on ${formattedTime}</p>
+                            <p class="text-lg text-text-color">${echo.message}</p>
+                        `;
+
+                        // Add tags if they exist
+                        if (echo.tags && echo.tags.length > 0) {
+                            const tagsContainer = document.createElement('div');
+                            tagsContainer.className = 'idea-tags-container';
+                            echo.tags.forEach(tag => {
+                                const tagSpan = document.createElement('span');
+                                tagSpan.className = 'idea-tag';
+                                tagSpan.textContent = `#${tag}`;
+                                tagsContainer.appendChild(tagSpan);
+                            });
+                            echoCard.appendChild(tagsContainer);
+                        }
+
+                        echosList.appendChild(echoCard);
+                    });
+                }
+            };
+            
+            // --- Chat System Functions ---
+            const loadChats = () => {
+                const chats = localStorage.getItem(LOCAL_STORAGE_CHATS_KEY);
+                // Initialize with a single group chat if none exist
+                return chats ? JSON.parse(chats) : [{
+                    id: 'group-chat',
+                    name: 'Group Chat',
+                    messages: []
+                }];
+            };
+
+            const saveChats = (chats) => {
+                localStorage.setItem(LOCAL_STORAGE_CHATS_KEY, JSON.stringify(chats));
+            };
+            
+            const renderChatList = () => {
+                const currentProfile = loadCurrentProfile();
+                const allProfiles = getAllProfiles();
+                const chats = loadChats();
+                
+                chatList.innerHTML = '';
+                
+                const groupChat = chats.find(c => c.id === 'group-chat');
+                const groupItem = document.createElement('li');
+                groupItem.className = `cursor-pointer p-4 rounded-lg hover:bg-gray-200 transition-colors duration-200 chat-item transform skew-x-1 ${groupChat.id === currentActiveChatId ? 'bg-accent-color text-white' : 'bg-primary-bg'}`;
+                groupItem.dataset.chatId = groupChat.id;
+                groupItem.textContent = groupChat.name;
+                chatList.appendChild(groupItem);
+
+                const friends = allProfiles.find(p => p.uid === currentProfile.uid)?.friends || [];
+                friends.forEach(friendId => {
+                    const friendProfile = allProfiles.find(p => p.uid === friendId);
+                    if (friendProfile) {
+                        const chatId1 = `${currentProfile.uid}-${friendProfile.uid}`;
+                        const chatId2 = `${friendProfile.uid}-${currentProfile.uid}`;
+                        let privateChat = chats.find(c => c.id === chatId1 || c.id === chatId2);
+                        
+                        if (!privateChat) {
+                            privateChat = { id: chatId1, name: friendProfile.username, messages: [] };
+                            chats.push(privateChat);
+                        }
+
+                        const friendItem = document.createElement('li');
+                        friendItem.className = `cursor-pointer p-4 rounded-lg hover:bg-gray-200 transition-colors duration-200 chat-item transform skew-x-1 ${privateChat.id === currentActiveChatId ? 'bg-accent-color text-white' : 'bg-primary-bg'}`;
+                        friendItem.dataset.chatId = privateChat.id;
+                        friendItem.textContent = friendProfile.username;
+                        chatList.appendChild(friendItem);
+                    }
+                });
+                saveChats(chats);
+                
+                // Add event listeners to the new list items
+                document.querySelectorAll('.chat-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        const newChatId = e.target.dataset.chatId;
+                        if (newChatId) {
+                            currentActiveChatId = newChatId;
+                            renderChatMessages(currentActiveChatId);
+                            updateChatTitle(newChatId);
+                            hideChatMenu();
+                        }
+                    });
+                });
+            };
+
+            const updateChatTitle = (chatId) => {
+                const chats = loadChats();
+                const chat = chats.find(c => c.id === chatId);
+                if (chat) {
+                    currentChatTitle.textContent = chat.name;
+                }
+            };
+
+            const showChatMenu = () => {
+                renderChatList(); // Ensure list is up to date before showing
+                chatMenuPopup.classList.add('show');
+            };
+
+            const hideChatMenu = () => {
+                chatMenuPopup.classList.remove('show');
+            };
+
+            const renderFriendsLists = () => {
+                const currentProfile = loadCurrentProfile();
+                const allProfiles = getAllProfiles();
+                
+                if (!currentProfile) {
+                    addFriendListContainer.innerHTML = '';
+                    friendsListContainer.innerHTML = '';
+                    friendRequestsListContainer.innerHTML = '';
+                    return;
+                }
+
+                // Render friend requests
+                friendRequestsListContainer.innerHTML = '';
+                const friendRequests = allProfiles.find(p => p.uid === currentProfile.uid)?.friendRequests || [];
+                if (friendRequests.length > 0) {
+                    friendRequests.forEach(requestId => {
+                        const requester = allProfiles.find(p => p.uid === requestId);
+                        if (requester) {
+                            const requestItem = document.createElement('div');
+                            requestItem.className = 'profile-list-item text-sm';
+                            requestItem.innerHTML = `
+                                <span>${requester.username}</span>
+                                <div class="flex gap-1">
+                                    <button class="text-green-400 font-bold hover:text-green-300" data-uid="${requester.uid}" data-action="accept">&#10003;</button>
+                                    <button class="text-red-400 font-bold hover:text-red-300" data-uid="${requester.uid}" data-action="reject">&#10007;</button>
+                                </div>
+                            `;
+                            friendRequestsListContainer.appendChild(requestItem);
+                        }
+                    });
+                } else {
+                    friendRequestsListContainer.innerHTML = '<p class="text-xs text-gray-500">No new requests.</p>';
+                }
+
+                // Render friends
+                friendsListContainer.innerHTML = '';
+                const friends = allProfiles.find(p => p.uid === currentProfile.uid)?.friends || [];
+                if (friends.length > 0) {
+                    friends.forEach(friendId => {
+                        const friendProfile = allProfiles.find(p => p.uid === friendId);
+                        if (friendProfile) {
+                            const friendItem = document.createElement('div');
+                            friendItem.className = 'profile-list-item text-sm';
+                            friendItem.innerHTML = `
+                                <span>${friendProfile.username}</span>
+                                <button class="text-red-400 font-bold hover:text-red-300" data-uid="${friendProfile.uid}" data-action="unfriend">&#10007;</button>
+                            `;
+                            friendsListContainer.appendChild(friendItem);
+                        }
+                    });
+                } else {
+                    friendsListContainer.innerHTML = '<p class="text-xs text-gray-500">You have no friends yet.</p>';
+                }
+
+                // Render add friends list
+                addFriendListContainer.innerHTML = '';
+                const profilesToAdd = allProfiles.filter(p => 
+                    p.uid !== currentProfile.uid && 
+                    !friends.includes(p.uid) && 
+                    !friendRequests.includes(p.uid) && 
+                    !(p.friendRequests || []).includes(currentProfile.uid)
+                );
+                if (profilesToAdd.length > 0) {
+                    profilesToAdd.forEach(profile => {
+                        const friendItem = document.createElement('div');
+                        friendItem.className = 'profile-list-item text-sm';
+                        friendItem.innerHTML = `
+                            <span>${profile.username}</span>
+                            <button class="text-accent-color font-bold hover:text-nav-hover-color" data-uid="${profile.uid}" data-action="add">+</button>
+                        `;
+                        addFriendListContainer.appendChild(friendItem);
+                    });
+                } else {
+                    addFriendListContainer.innerHTML = '<p class="text-xs text-gray-500">No new profiles to add.</p>';
+                }
+
+                // Handle friend actions
+                document.querySelectorAll('[data-action]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const targetUid = e.target.dataset.uid;
+                        const action = e.target.dataset.action;
+                        let allProfiles = getAllProfiles();
+                        let currentProfile = allProfiles.find(p => p.uid === localStorage.getItem(LOCAL_STORAGE_CURRENT_PROFILE_ID_KEY));
+                        let targetProfile = allProfiles.find(p => p.uid === targetUid);
+
+                        if (!currentProfile || !targetProfile) return;
+
+                        if (action === 'add') {
+                            if (!targetProfile.friendRequests) targetProfile.friendRequests = [];
+                            if (!targetProfile.friendRequests.includes(currentProfile.uid)) {
+                                targetProfile.friendRequests.push(currentProfile.uid);
+                                saveAllProfiles(allProfiles);
+                                renderFriendsLists();
+                            }
+                        } else if (action === 'accept') {
+                            currentProfile.friendRequests = currentProfile.friendRequests.filter(id => id !== targetUid);
+                            if (!currentProfile.friends) currentProfile.friends = [];
+                            currentProfile.friends.push(targetUid);
+                            if (!targetProfile.friends) targetProfile.friends = [];
+                            targetProfile.friends.push(currentProfile.uid);
+                            
+                            saveAllProfiles(allProfiles);
+                            renderFriendsLists();
+                        } else if (action === 'reject') {
+                            currentProfile.friendRequests = currentProfile.friendRequests.filter(id => id !== targetUid);
+                            saveAllProfiles(allProfiles);
+                            renderFriendsLists();
+                        } else if (action === 'unfriend') {
+                            currentProfile.friends = currentProfile.friends.filter(id => id !== targetUid);
+                            targetProfile.friends = targetProfile.friends.filter(id => id !== currentProfile.uid);
+                            saveAllProfiles(allProfiles);
+                            renderFriendsLists();
+                        }
+                    });
+                });
+            };
+
+            const renderChatMessages = (chatId) => {
+                const chats = loadChats();
+                const chat = chats.find(c => c.id === chatId);
+                chatMessagesContainer.innerHTML = ''; // Clear messages
+                if (chat) {
+                    chat.messages.forEach(msg => {
+                        const messageBubble = document.createElement('div');
+                        messageBubble.className = `message-bubble ${msg.senderId === loadCurrentProfile().uid ? 'sent' : 'received'}`;
+                        
+                        const senderName = document.createElement('p');
+                        senderName.className = 'font-bold text-xs';
+                        senderName.textContent = msg.senderName;
+                        
+                        const messageText = document.createElement('p');
+                        messageText.className = 'text-sm';
+                        messageText.textContent = msg.message;
+
+                        const messageInfo = document.createElement('div');
+                        messageInfo.className = 'message-info';
+                        
+                        const timestamp = document.createElement('span');
+                        timestamp.className = 'message-timestamp';
+                        const date = new Date(msg.timestamp);
+                        const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        timestamp.textContent = formattedTime;
+
+                        messageBubble.appendChild(senderName);
+                        messageBubble.appendChild(messageText);
+                        messageBubble.appendChild(timestamp);
+                        chatMessagesContainer.appendChild(messageBubble);
+                    });
+                    // Scroll to the bottom of the chat window
+                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+                }
+            };
+            
+            // --- UI & Event Listeners ---
+            const showPage = (pageId) => {
+                pages.forEach(page => {
+                    page.classList.add('hidden');
+                    page.classList.remove('is-visible');
+                });
+                
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                    setTimeout(() => {
+                        targetPage.classList.add('is-visible');
+                    }, 100);
+                }
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+
+                if (pageId === 'idea-board') renderEchos();
+                if (pageId === 'profile') renderFriendsLists();
+                if (pageId === 'chat-system') {
+                    renderChatMessages(currentActiveChatId);
+                    updateChatTitle(currentActiveChatId);
+                }
+            };
+
+            const updateUI = (profile) => {
+                if (profile) {
+                    profileNameEl.textContent = profile.username;
+                    profileBioEl.textContent = profile.bio || 'No bio set.';
+                    profileView.classList.remove('hidden');
+                    authState.classList.add('hidden');
+                    document.querySelectorAll('[data-page]').forEach(link => link.classList.remove('hidden'));
+                    document.querySelector('[data-page="home"]').classList.add('hidden');
+                    showPage('profile');
+                } else {
+                    profileView.classList.add('hidden');
+                    authState.classList.remove('hidden');
+                    profileSelect.innerHTML = '';
+                    const profiles = getAllProfiles();
+                    if (profiles.length > 0) {
+                        profiles.forEach(p => {
+                            const option = document.createElement('option');
+                            option.value = p.uid;
+                            option.textContent = p.username;
+                            profileSelect.appendChild(option);
+                        });
+                        loginBtn.classList.remove('hidden');
+                        profileSelect.disabled = false;
+                    } else {
+                        profileSelect.innerHTML = '<option value="">-- No Profiles Found --</option>';
+                        profileSelect.disabled = true;
+                        loginBtn.classList.add('hidden');
+                    }
+                    document.querySelectorAll('[data-page]').forEach(link => link.classList.add('hidden'));
+                    document.querySelector('[data-page="home"]').classList.remove('hidden');
+                    showPage('home');
+                }
+            };
+
+            // Initial check for a logged-in user
+            const currentProfile = loadCurrentProfile();
+            if (currentProfile) {
+                updateUI(currentProfile);
+            } else {
+                updateUI(null);
+            }
+
+            // Event listener for login form submission
+            authForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = usernameInput.value.trim();
+                if (username) {
+                    const profiles = getAllProfiles();
+                    const existingProfile = profiles.find(p => p.username.toLowerCase() === username.toLowerCase());
+                    if (existingProfile) {
+                        const errorMsg = document.getElementById('auth-error-message');
+                        errorMsg.textContent = 'This username already exists. Please choose a different one or use the dropdown.';
+                        errorMsg.classList.remove('hidden');
+                        return;
+                    }
+                    const newProfile = {
+                        uid: generateUUID(),
+                        username: username,
+                        bio: '',
+                        friends: [],
+                        friendRequests: []
+                    };
+                    saveCurrentProfile(newProfile);
+                    usernameInput.value = '';
+                    document.getElementById('auth-error-message').classList.add('hidden');
+                }
+            });
+
+            loginBtn.addEventListener('click', () => {
+                const selectedProfileId = profileSelect.value;
+                if (selectedProfileId) {
+                    localStorage.setItem(LOCAL_STORAGE_CURRENT_PROFILE_ID_KEY, selectedProfileId);
+                    const profile = loadCurrentProfile();
+                    updateUI(profile);
+                }
+            });
+
+            editProfileBtn.addEventListener('click', () => {
+                profileView.classList.add('hidden');
+                profileEdit.classList.remove('hidden');
+                const profile = loadCurrentProfile();
+                profileNameInput.value = profile.username;
+                profileBioInput.value = profile.bio;
+            });
+
+            cancelEditBtn.addEventListener('click', () => {
+                profileEdit.classList.add('hidden');
+                profileView.classList.remove('hidden');
+            });
+            
+            signoutBtn.addEventListener('click', () => {
+                localStorage.removeItem(LOCAL_STORAGE_CURRENT_PROFILE_ID_KEY);
+                updateUI(null);
+            });
+
+            profileEdit.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const profile = loadCurrentProfile();
+                profile.username = profileNameInput.value.trim();
+                profile.bio = profileBioInput.value.trim();
+                saveCurrentProfile(profile);
+                profileEdit.classList.add('hidden');
+                profileView.classList.remove('hidden');
+            });
+
+            // Idea Board form submission
+            echoForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const message = echoMessageInput.value.trim();
+                const tagsText = echoTagsInput.value.trim(); // Get the tags input value
+                const tags = tagsText.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0); // Split and clean up tags
+                
+                const currentProfile = loadCurrentProfile();
+                if (message && currentProfile) {
+                    const echos = loadEchos();
+                    const newEcho = {
+                        authorName: currentProfile.username,
+                        message: message,
+                        tags: tags, // Add the tags to the new echo object
+                        timestamp: new Date().toISOString()
+                    };
+                    echos.push(newEcho);
+                    saveEchos(echos);
+                    echoMessageInput.value = '';
+                    echoTagsInput.value = ''; // Clear the tags input field
+                }
+            });
+
+            // Chat form submission
+            chatInputForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const message = chatMessageInput.value.trim();
+                const currentProfile = loadCurrentProfile();
+                if (message && currentProfile && currentActiveChatId) {
+                    const chats = loadChats();
+                    const chat = chats.find(c => c.id === currentActiveChatId);
+                    if (chat) {
+                        const newMessage = {
+                            senderId: currentProfile.uid,
+                            senderName: currentProfile.username,
+                            message: message,
+                            timestamp: new Date().toISOString()
+                        };
+                        chat.messages.push(newMessage);
+                        saveChats(chats);
+                        renderChatMessages(currentActiveChatId);
+                        chatMessageInput.value = '';
+                    }
+                }
+            });
+
+            // Event listeners for the new pop-up chat menu
+            chatMenuButton.addEventListener('click', showChatMenu);
+            closeMenuButton.addEventListener('click', hideChatMenu);
+            chatMenuPopup.addEventListener('click', (e) => {
+                if (e.target === chatMenuPopup) {
+                    hideChatMenu();
+                }
+            });
+
+            // Scroll to top button logic
+            window.onscroll = function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    scrollButton.style.opacity = '1';
+                    scrollButton.style.pointerEvents = 'auto';
+                } else {
+                    scrollButton.style.opacity = '0';
+                    scrollButton.style.pointerEvents = 'none';
+                }
+            };
+
+            scrollButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Set up event listeners for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const pageId = link.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+
+            // Initially render login state
+            updateUI(loadCurrentProfile());
+
+        })();
+    </script>
+
+</body>
+</html>
